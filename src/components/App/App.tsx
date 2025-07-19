@@ -42,11 +42,19 @@ export default function App() {
             onPageChange={setPage}
           />
         )}
+        
         <button onClick={handleClick} className={css.button}>
           Create note +
         </button>
       </header>
-      {isSuccess && data.notes.length > 0 && <NoteList notes={data.notes} />}
+      {isSuccess && (
+  data.notes.length > 0 ? (
+    <NoteList notes={data.notes} />
+  ) : (
+    <p className={css.noResults}>No results found</p>
+  )
+)}
+
       {isCreateNote && <NoteModal onClose={handleClose} />}
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
